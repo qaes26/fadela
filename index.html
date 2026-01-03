@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى ست البنات - فضيلة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&family=Amiri:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 100%);
+            overflow: hidden;
+            height: 100vh;
+            color: white;
+            perspective: 1000px;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: var(--opacity); transform: scale(1); }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border-radius: 20px;
+            transition: all 0.5s ease;
+        }
+
+        .heart-beat {
+            animation: beat 1.5s infinite;
+        }
+
+        @keyframes beat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .slide {
+            display: none;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 20px;
+            animation: floatUp 4s linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Fancy font for the name */
+        .name-font {
+            font-family: 'Amiri', serif;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center relative">
+
+    <!-- Background Stars Container -->
+    <div id="stars-container" class="absolute inset-0 z-0 pointer-events-none"></div>
+
+    <!-- Main Content Area -->
+    <div class="relative z-10 w-full max-w-lg p-6">
+        
+        <!-- Slide 1: Intro -->
+        <div id="slide-1" class="slide active flex-col items-center justify-center text-center glass-panel p-8 min-h-[400px]">
+            <div class="text-6xl text-pink-500 mb-6 heart-beat">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h1 class="text-3xl font-bold mb-4">إلى أغلى ما في الكون</h1>
+            <p class="text-xl text-gray-300 mb-8">رسالة خاصة جداً...</p>
+            <button onclick="nextSlide(1)" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-8 rounded-full transition transform hover:scale-105 shadow-lg shadow-pink-500/30">
+                افتحي الرسالة
+            </button>
+        </div>
+
+        <!-- Slide 2: The Apology Text -->
+        <div id="slide-2" class="slide flex-col items-center justify-center text-center glass-panel p-8 min-h-[400px]">
+            <h2 class="text-4xl name-font text-pink-400 mb-6">يا فضيلة.. يا ست البنات</h2>
+            <div class="h-32 flex items-center justify-center w-full">
+                <p id="typewriter-text" class="text-lg leading-relaxed text-gray-100 typing-cursor"></p>
+            </div>
+            <button id="next-btn-2" onclick="nextSlide(2)" class="mt-8 bg-transparent border-2 border-pink-500 text-pink-400 hover:bg-pink-500 hover:text-white font-bold py-2 px-6 rounded-full transition opacity-0">
+                أكملي القراءة <i class="fas fa-arrow-left mr-2"></i>
+            </button>
+        </div>
+
+        <!-- Slide 3: The Interaction -->
+        <div id="slide-3" class="slide flex-col items-center justify-center text-center glass-panel p-8 min-h-[400px]">
+            <div class="mb-6">
+                <img src="https://api.dicebear.com/7.x/micah/svg?seed=Fadila&backgroundColor=b6e3f4" alt="Avatar" class="w-24 h-24 rounded-full border-4 border-pink-500 mx-auto shadow-lg bg-white">
+            </div>
+            <h2 class="text-2xl font-bold mb-4">أعلم أنني أخطأت..</h2>
+            <p class="text-gray-300 mb-8">الدنيا من غير ضحكتك ظلمة، وأنا ما يهونش عليّ زعلك لحظة واحدة.</p>
+            <h3 class="text-xl font-bold text-pink-300 mb-8">هل تسامحيني ونرجع أحسن من الأول؟</h3>
+            
+            <div class="flex flex-col sm:flex-row gap-4 w-full justify-center items-center relative h-32 sm:h-auto">
+                <button onclick="acceptApology()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-10 rounded-full shadow-lg transform transition hover:scale-110 z-20">
+                    أكيد مسامحاك <i class="fas fa-check ml-2"></i>
+                </button>
+                
+                <button id="no-btn" onmouseover="moveButton()" ontouchstart="moveButton()" class="bg-gray-600 text-gray-300 font-bold py-3 px-10 rounded-full shadow-lg absolute sm:relative transition-all duration-300 z-10">
+                    لا، لسه زعلانة
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 4: Success -->
+        <div id="slide-4" class="slide flex-col items-center justify-center text-center glass-panel p-8 min-h-[400px]">
+            <div class="text-6xl text-red-500 mb-6 animate-bounce">
+                <i class="fas fa-kiss-wink-heart"></i>
+            </div>
+            <h1 class="text-4xl name-font text-white mb-4">أحبك يا فضيلة!</h1>
+            <p class="text-lg text-pink-200">وعد مني، الضحكة دي مش هتفارق وجهك أبداً.</p>
+            <div class="mt-8 text-sm text-gray-400">
+                صُنع بحب.. واعتذار صادق
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Hidden Audio Trigger (User must interact first usually, simulating visually) -->
+    
+    <script>
+        // Star Background Generation
+        const starsContainer = document.getElementById('stars-container');
+        const starCount = 100;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const xy = Math.random() * 100;
+            const duration = Math.random() * 3 + 2;
+            const size = Math.random() * 3;
+            
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.setProperty('--duration', `${duration}s`);
+            star.style.setProperty('--opacity', Math.random());
+            
+            starsContainer.appendChild(star);
+        }
+
+        // Slide Navigation Logic
+        function nextSlide(currentSlideId) {
+            document.getElementById(`slide-${currentSlideId}`).classList.remove('active');
+            const nextId = currentSlideId + 1;
+            const nextSlideEl = document.getElementById(`slide-${nextId}`);
+            if (nextSlideEl) {
+                nextSlideEl.classList.add('active');
+                
+                // If moving to slide 2, start typewriter
+                if (nextId === 2) {
+                    startTypewriter();
+                }
+            }
+        }
+
+        // Typewriter Effect for Apology
+        const textToType = "حقك عليّ يا نور عيني.. العتاب صابون القلوب، وأنا قلبي أبيض بوجودك فيه. أتمنى تقبلي اعتذاري البسيط ده عشان إنتِ أغلى حاجة عندي.";
+        const typeWriterElement = document.getElementById('typewriter-text');
+        const nextBtn2 = document.getElementById('next-btn-2');
+        let i = 0;
+
+        function startTypewriter() {
+            if (i < textToType.length) {
+                typeWriterElement.innerHTML += textToType.charAt(i);
+                i++;
+                setTimeout(startTypewriter, 50);
+            } else {
+                document.querySelector('.typing-cursor').classList.remove('typing-cursor');
+                nextBtn2.classList.remove('opacity-0');
+            }
+        }
+
+        // The "No" Button Evasion Logic
+        const noBtn = document.getElementById('no-btn');
+        let attempts = 0;
+        const funnyTexts = ["لا إيه بس؟", "فكري تاني..", "مش هتعرفي تدوسي", "قلبك أبيض بقى", "يا ستي والله آسف"];
+
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - 200) - (window.innerWidth / 2 - 100);
+            const y = Math.random() * (window.innerHeight - 200) - (window.innerHeight / 2 - 100);
+            
+            // Limit movement to within viewing area roughly
+            const safeX = Math.max(Math.min(x, 150), -150);
+            const safeY = Math.max(Math.min(y, 150), -150);
+
+            noBtn.style.transform = `translate(${safeX}px, ${safeY}px)`;
+            
+            // Change text for fun
+            if (attempts < funnyTexts.length) {
+                noBtn.innerText = funnyTexts[attempts];
+                attempts++;
+            } else {
+                noBtn.innerText = "خلاص سامحيني!";
+            }
+        }
+
+        // Acceptance Celebration
+        function acceptApology() {
+            nextSlide(3); // Move to slide 4
+            createHeartExplosion();
+        }
+
+        function createHeartExplosion() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+                heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }, 300);
+        }
+
+    </script>
+</body>
+</html>
+
